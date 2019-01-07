@@ -360,6 +360,122 @@
 			"response": []
 		},
 		{
+			"name": "Comment POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "game",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "bla bla",
+							"type": "text"
+						},
+						{
+							"key": "user",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/comment/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comments GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/comment/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"comment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/comment/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"comment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Comment DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/comment/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"comment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "User DELETE",
 			"request": {
 				"method": "DELETE",
