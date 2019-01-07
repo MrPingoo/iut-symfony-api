@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "c36d1a24-da91-bda4-211f-307bc73b3b47",
+		"name": "IUT LP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Game Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "release_date",
+							"value": "2018-11-26",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "blabla",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "bla bla",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"value": "https://i1.wp.com/quickhash-gui.org/wp-content/uploads/2017/07/base64.png?fit=806%2C806&ssl=1",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "external_video",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "11.5",
+							"type": "text"
+						},
+						{
+							"key": "store_link",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "external_site",
+							"value": "http://exemple.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Game Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "release_date",
+							"value": "2018-11-26",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "blabla2",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "bla bla",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"value": "https://i1.wp.com/quickhash-gui.org/wp-content/uploads/2017/07/base64.png?fit=806%2C806&ssl=1",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "external_video",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "11.5",
+							"type": "text"
+						},
+						{
+							"key": "store_link",
+							"value": "http://exemple.com",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "external_site",
+							"value": "http://exemple.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Games GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Game GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Game DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/3",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/category/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"category",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Cat 3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/category/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"category",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "julian.l",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "julian",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "layen",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "julian.layen@talan.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "azerty",
+							"type": "text"
+						},
+						{
+							"key": "googleid",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "groups",
+							"value": "ADMIN",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/user/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/user/2",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User UPDATE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "julian.l",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "julian",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "layen",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "julian.layen@talan.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "azerty",
+							"type": "text"
+						},
+						{
+							"key": "googleid",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "groups",
+							"value": "ADMIN",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/user/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/user/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://iut.local/api/user/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Cat 12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/category/4",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"category",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://iut.local/api/category/1",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"category",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
