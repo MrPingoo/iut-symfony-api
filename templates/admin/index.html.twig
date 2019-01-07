@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Admin Category index</h1>
+    <h2>Date : {{ date|date('d/m/Y') }}</h2>
 
     <table class="table">
         <thead>
@@ -15,7 +16,12 @@
         </thead>
         <tbody>
         {% for category in categories %}
-            <tr>
+            {% if loop.index is even %}
+                {% set active = '' %}
+            {% else %}
+                {% set active = 'table-active' %}
+            {% endif  %}
+            <tr class="{{ active }}">
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>

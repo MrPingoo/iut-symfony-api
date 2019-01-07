@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Game;
+use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,8 @@ class AdminCategoryController extends AbstractController
         $categories = $repository->findall();
 
         return $this->render('admin/index.html.twig', [
-            'categories' => $categories
+            'categories' => $categories,
+            'date' => new \DateTime('now')
         ]);
     }
 
@@ -49,12 +51,29 @@ class AdminCategoryController extends AbstractController
 
 
     /**
-     * @Route("/", name="admin_category_new")
+     * @Route("/new/", name="admin_category_new")
      * @Method({"GET", "POST"})
      */
     public function create(Request $request)
     {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_category_show', [
+                'id' => $category->getId()
+            ]);
+        }
+
+        return $this->render('admin/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 
@@ -62,17 +81,26 @@ class AdminCategoryController extends AbstractController
      * @Route("/edit/{id}", name="admin_category_edit")
      * @Method({"GET", "POST"})
      */
-    public function edit(Request $request)
+    public function edit(Request $request, Category $category)
     {
-
+        
     }
 
     /**
-     * @Route("/{id}", name="admin_category_delete")
-     * @Method("POST")
+     * @Route("/del/{id}", name="admin_category_delete")
+     * @Method("GET")
      */
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
+        $repository = $this->getDoctrine()->getRepository(Category::class);
 
+        // query for a single Category by its primary key (usually "id")
+        /** @var Category $category */
+        $category = $repository->findOneById($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_category_index');
     }
 }
