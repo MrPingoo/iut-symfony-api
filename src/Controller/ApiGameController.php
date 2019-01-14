@@ -92,7 +92,7 @@ class ApiGameController extends AbstractController
 
     /**
      * Get a Game.
-     * @FOSRest\Get("/{id}")
+     * @FOSRest\Get("/")
      *
      * @return array
      */
@@ -182,4 +182,22 @@ class ApiGameController extends AbstractController
         return View::create($games, Response::HTTP_OK, []);
     }
 
+    /**
+     * Get a Game.
+     * @FOSRest\Post("/")
+     *
+     * @return array
+     */
+    public function search(Request $request)
+    {
+        $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
+        $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
+
+        $games = $repositoryGame->search(['category', $request->get('category')]);
+
+        // $moy = $repository->countNumberByGame($game);
+        // $game->setCount(ceil($moy['total'] / $moy['count']));
+
+        return View::create($games, Response::HTTP_OK, []);
+    }
 }
