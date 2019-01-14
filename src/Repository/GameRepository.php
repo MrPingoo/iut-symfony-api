@@ -22,9 +22,17 @@ class GameRepository extends ServiceEntityRepository
     /**
      * @return Game[] Returns an array of Game objects
      */
-    public function search($value)
+    public function search($params)
     {
-        // @TODO
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.category = :category')
+            ->setParameter('category', $params['category'])
+            ->orderBy('g.date', 'DESC')
+            ->setMaxResults($params['rows'])
+            ->setFirstResult($params['offset'])
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
