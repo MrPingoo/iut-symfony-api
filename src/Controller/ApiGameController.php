@@ -193,7 +193,8 @@ class ApiGameController extends AbstractController
         $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
 
-        $games = $repositoryGame->search(['category', $request->get('category')]);
+        $category = $repositoryCategory->findOneById($request->get('category'));
+        $games = $repositoryGame->search(['category', $category]);
 
         // $moy = $repository->countNumberByGame($game);
         // $game->setCount(ceil($moy['total'] / $moy['count']));
