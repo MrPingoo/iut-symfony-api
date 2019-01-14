@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,19 @@ class CommentRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Comment::class);
+    }
+
+    public function findByGameWithRowsAndOffset(Game $game, $rows, $offset)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.game = :game')
+            ->setParameter('game', $game)
+            ->orderBy('c.date', 'DESC')
+            ->setMaxResults($rows)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
