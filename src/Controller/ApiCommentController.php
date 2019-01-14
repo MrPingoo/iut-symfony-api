@@ -80,15 +80,19 @@ class ApiCommentController extends AbstractController
 
     /**
      * Get a Comment.
-     * @FOSRest\Get("/{game}")
+     * @FOSRest\Post("/game/")
      *
      * @return array
      */
     public function show(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Comment::class);
+        $repositoryComment = $this->getDoctrine()->getRepository(Comment::class);
+        $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
 
-        $comments = $repository->findBy(['game' => $request->get('game')]);
+        $game = $repositoryGame->findOneById($request->get('game'));
+
+        $comments = $repositoryComment->findByGameWithRowsAndOffset(
+            $game, $request->get('rows'), $request->get('offset'));
 
         return View::create($comments, Response::HTTP_OK, []);
     }
