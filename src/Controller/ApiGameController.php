@@ -184,7 +184,7 @@ class ApiGameController extends AbstractController
 
     /**
      * Get a Game.
-     * @FOSRest\Post("/")
+     * @FOSRest\Post("/search/")
      *
      * @return array
      */
