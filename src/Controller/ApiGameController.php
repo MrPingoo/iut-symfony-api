@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
@@ -197,13 +198,20 @@ class ApiGameController extends AbstractController
         $category = $repositoryCategory->findOneById($request->get('category'));
         $user = $repositoryUser->findOneById($request->get('author'));
 
+        $begin = $request->get('begin');
+        $begin = new \DateTime($begin);
+        $end = $request->get('end');
+        $end = new \DateTime($end);
+
         $games = $repositoryGame->search(
             [
                 'category' => $category,
                 'rows' => $request->get('category'),
                 'offset' => $request->get('offset'),
                 'author' => $user,
-                'title' => $request->get('title')
+                'title' => $request->get('title'),
+                'begin_date' => $begin,
+                'end_date' => $end
             ]);
 
         // $moy = $repository->countNumberByGame($game);

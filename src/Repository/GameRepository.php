@@ -45,6 +45,15 @@ class GameRepository extends ServiceEntityRepository
             $q->setParameter('title', '%' . $params['title'] . '%');
         }
 
+        if (!empty($params['begin']) && !empty($params['end'])) {
+            $q->andWhere('g.release_date BETWEEN :begin AND :end')
+                ->setParameter('begin', $params['begin']->format('Y-m-d'))
+                ->setParameter('end', $params['end']->format('Y-m-d'));
+        } elseif(!empty($params['begin']) && empty($params['end'])) {
+            $q->andWhere('g.releaseDate > :begin')
+                ->setParameter('end', $params['begin']->format('Y-m-d'));
+        }
+
         return $q->getQuery()->getResult();
     }
 
