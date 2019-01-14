@@ -66,10 +66,13 @@ class Game
      */
     private $store_link;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category")
      */
     private $category;
+
+    private $count;
 
     public function getId(): ?int
     {
@@ -206,5 +209,21 @@ class Game
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    /**
+     * @param mixed $count
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
     }
 }

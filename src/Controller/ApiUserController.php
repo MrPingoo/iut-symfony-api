@@ -27,7 +27,7 @@ class ApiUserController extends AbstractController
      *
      * @return array
      */
-    public function creat(Request $request)
+    public function create(Request $request)
     {
         $user = new User();
         $user->setUsername($request->get('username'));

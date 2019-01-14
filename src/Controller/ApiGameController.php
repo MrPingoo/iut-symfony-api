@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Game;
+use App\Entity\Stars;
 use App\Entity\User;
 use FOS\RestBundle\FOSRestBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,6 +98,11 @@ class ApiGameController extends AbstractController
      */
     public function show(Game $game)
     {
+        $repository = $this->getDoctrine()->getRepository(Stars::class);
+        $moy = $repository->countNumberByGame($game);
+
+        $game->setCount(ceil($moy['total'] / $moy['count']));
+
         return View::create($game, Response::HTTP_OK, []);
     }
 

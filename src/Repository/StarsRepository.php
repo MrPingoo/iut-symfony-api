@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Game;
 use App\Entity\Stars;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -17,6 +18,16 @@ class StarsRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Stars::class);
+    }
+
+    public function countNumberByGame(Game $game)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.game = :game')
+            ->setParameter('game', $game)
+            ->select('SUM(s.star) as total, COUNT(s.star) as count')
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     // /**
