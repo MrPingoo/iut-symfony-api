@@ -192,13 +192,18 @@ class ApiGameController extends AbstractController
     {
         $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
+        $repositoryUser = $this->getDoctrine()->getRepository(User::class);
 
         $category = $repositoryCategory->findOneById($request->get('category'));
+        $user = $repositoryUser->findOneById($request->get('author'));
+
         $games = $repositoryGame->search(
             [
                 'category' => $category,
                 'rows' => $request->get('category'),
-                'offset' => $request->get('offset')
+                'offset' => $request->get('offset'),
+                'author' => $user,
+                'title' => $request->get('title')
             ]);
 
         // $moy = $repository->countNumberByGame($game);

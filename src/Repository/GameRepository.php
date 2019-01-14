@@ -24,15 +24,28 @@ class GameRepository extends ServiceEntityRepository
      */
     public function search($params)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.category = :category')
-            ->setParameter('category', $params['category'])
+        $q = $this->createQueryBuilder('g')
             ->orderBy('g.date', 'DESC')
             ->setMaxResults($params['rows'])
             ->setFirstResult($params['offset'])
-            ->getQuery()
-            ->getResult()
             ;
+
+        if (!empty($params['category'])) {
+            $q->andWhere('g.category = :category');
+            $q->setParameter('category', $params['category']);
+        }
+
+        if (!empty($params['author'])) {
+            $q->andWhere('g.author = :author');
+            $q->setParameter('author', $params['author']);
+        }
+
+        if (!empty($params['title'])) {
+            $q->andWhere('g.title like :title');
+            $q->setParameter('title', '%' . $params['title'] . '%');
+        }
+
+        return $q->getQuery()->getResult();
     }
 
     // /**
