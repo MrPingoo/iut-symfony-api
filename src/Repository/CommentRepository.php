@@ -20,12 +20,12 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
-    public function findByGameWithRowsAndOffset(Game $game, $rows, $offset)
+    public function findByGameWithRowsAndOffset(Game $game, $rows, $offset, $sort)
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.game = :game')
             ->setParameter('game', $game)
-            ->orderBy('c.date', 'DESC')
+            ->orderBy('c.date', $sort)
             ->setMaxResults($rows)
             ->setFirstResult($offset)
             ->getQuery()

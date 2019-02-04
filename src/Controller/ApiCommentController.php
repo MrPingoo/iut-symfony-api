@@ -91,7 +91,7 @@ class ApiCommentController extends AbstractController
 
         $game = $repositoryGame->findOneById($request->get('game'));
 
-        $comments = $repositoryComment->findByGameWithRowsAndOffset($game, $request->get('rows'), $request->get('offset'));
+        $comments = $repositoryComment->findByGameWithRowsAndOffset($game, $request->get('rows'), $request->get('offset'), $request->get('sorting'));
 
         return View::create($comments, Response::HTTP_OK, []);
     }
