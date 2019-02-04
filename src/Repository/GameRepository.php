@@ -54,6 +54,16 @@ class GameRepository extends ServiceEntityRepository
                 ->setParameter('end', $params['begin']->format('Y-m-d'));
         }
 
+        if (!empty($params['sort_releasedate'])) {
+            $q->orderBy('releaseDate', $params['sort_releasedate']);
+        }
+
+        /*
+        if (!empty($params['sort_starts'])) {
+            $q->orderBy('releaseDate', $params['sort_starts']);
+        }
+        */
+
         return $q->getQuery()->getResult();
     }
 
