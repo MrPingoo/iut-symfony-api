@@ -223,16 +223,25 @@ class ApiGameController extends AbstractController
 
         foreach ($games as $game) {
             $moy = $repositoryStars->countNumberByGame($game);
-            $game->setCount(ceil($moy['total'] / $moy['count']));
+            if ($moy['total'] != NULL && $moy['count'] != NULL) {
+                $game->setCount(ceil($moy['total'] / $moy['count']));
+            }
 
             if (isset($starFilter) && ($starFilter != "")) {
                 if ($game->getCount() >= $starFilter) {
-                    $results = $game;
+                    $results[] = $game;
                 }
             } else {
-                $results = $game;
+                $results[] = $game;
             }
         }
+
+        // Le code ci-dessus est l'équvalant de :
+        // SELECT  game.*, SUM(s.star) / COUNT(s.star) as count
+        // FROM    game
+        // LEFT JOIN stars s ON game.id = s.game_id
+        // GROUP BY game.id, s.game_id
+
 
         return View::create($results, Response::HTTP_OK, []);
     }
