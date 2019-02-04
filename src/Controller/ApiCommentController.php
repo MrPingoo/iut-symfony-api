@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Game;
+use App\Entity\Stars;
 use App\Entity\User;
 use FOS\RestBundle\FOSRestBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,35 +32,71 @@ class ApiCommentController extends AbstractController
      */
     public function create(Request $request)
     {
-        $comment = new Comment();
+        $commentDescr = $request->get('comment');
+        $starsRate = $request->get('star');
 
-        $date = new \DateTime('now');
-        $comment->setDate($date);
-        $comment->setComment($request->get('comment'));
+        if ($commentDescr) {
 
-        // Find all categories
-        $game_id = $request->get('game');
-        if (!empty($game_id)) {
-            $repository = $this->getDoctrine()->getRepository(Game::class);
-            $game = $repository->findOneById($game_id);
-            // Set Categories
-            $comment->setGame($game);
+            $comment = new Comment();
+
+            $date = new \DateTime('now');
+            $comment->setDate($date);
+            $comment->setComment($commentDescr);
+
+            // Find all categories
+            $game_id = $request->get('game');
+            if (!empty($game_id)) {
+                $repository = $this->getDoctrine()->getRepository(Game::class);
+                $game = $repository->findOneById($game_id);
+                // Set Categories
+                $comment->setGame($game);
+            }
+
+            // Find all categories
+            $user_id = $request->get('user');
+            if (!empty($game_id)) {
+                $repository = $this->getDoctrine()->getRepository(User::class);
+                $user = $repository->findOneById($user_id);
+                // Set Categories
+                $comment->setUser($user);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
         }
 
-        // Find all categories
-        $user_id = $request->get('user');
-        if (!empty($game_id)) {
-            $repository = $this->getDoctrine()->getRepository(User::class);
-            $user = $repository->findOneById($user_id);
-            // Set Categories
-            $comment->setUser($user);
+        if (!empty($starsRate)) {
+            $stars = new Stars();
+
+            $date = new \DateTime('now');
+            $stars->setDate($date);
+            $stars->setStar($starsRate);
+
+            // Find all categories
+            $game_id = $request->get('game');
+            if (!empty($game_id)) {
+                $repository = $this->getDoctrine()->getRepository(Game::class);
+                $game = $repository->findOneById($game_id);
+                // Set Categories
+                $stars->setGame($game);
+            }
+
+            // Find all categories
+            $user_id = $request->get('user');
+            if (!empty($game_id)) {
+                $repository = $this->getDoctrine()->getRepository(User::class);
+                $user = $repository->findOneById($user_id);
+                // Set Categories
+                $stars->setUser($user);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($stars);
+            $em->flush();
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($comment);
-        $em->flush();
-
-        return View::create($comment, Response::HTTP_CREATED, []);
+        return View::create(['stars' => $stars, 'comment' => $comment], Response::HTTP_CREATED, []);
     }
 
     /**
