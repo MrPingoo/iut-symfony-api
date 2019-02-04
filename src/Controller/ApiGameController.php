@@ -194,6 +194,7 @@ class ApiGameController extends AbstractController
         $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
         $repositoryUser = $this->getDoctrine()->getRepository(User::class);
+        $repositoryStars = $this->getDoctrine()->getRepository(Stars::class);
 
         $category = $repositoryCategory->findOneById($request->get('category'));
         $user = $repositoryUser->findOneById($request->get('author'));
@@ -206,17 +207,33 @@ class ApiGameController extends AbstractController
         $games = $repositoryGame->search(
             [
                 'category' => $category,
-                'rows' => $request->get('category'),
+                'rows' => $request->get('rows'),
                 'offset' => $request->get('offset'),
                 'author' => $user,
                 'title' => $request->get('title'),
                 'begin_date' => $begin,
-                'end_date' => $end
+                'end_date' => $end,
+                'end_date' => $request->get('title'),
+                'stars' => $request->get('stars')
             ]);
 
-        // $moy = $repository->countNumberByGame($game);
-        // $game->setCount(ceil($moy['total'] / $moy['count']));
+        $starFilter = $request->get('stars');
 
-        return View::create($games, Response::HTTP_OK, []);
+        $results = [];
+
+        foreach ($games as $game) {
+            $moy = $repositoryStars->countNumberByGame($game);
+            $game->setCount(ceil($moy['total'] / $moy['count']));
+
+            if (isset($starFilter) && ($starFilter != "")) {
+                if ($game->getCount() >= $starFilter) {
+                    $results = $game;
+                }
+            } else {
+                $results = $game;
+            }
+        }
+
+        return View::create($results, Response::HTTP_OK, []);
     }
 }
