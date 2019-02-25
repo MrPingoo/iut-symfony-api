@@ -93,7 +93,7 @@ class ApiGameController extends AbstractController
 
     /**
      * Get a Game.
-     * @FOSRest\Get("/")
+     * @FOSRest\Get("/{id}")
      *
      * @return array
      */
@@ -191,6 +191,7 @@ class ApiGameController extends AbstractController
      */
     public function search(Request $request)
     {
+        // dump($this->getUser()); die();
         $repositoryGame = $this->getDoctrine()->getRepository(Game::class);
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
         $repositoryUser = $this->getDoctrine()->getRepository(User::class);
