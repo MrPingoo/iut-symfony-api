@@ -87,6 +87,185 @@
 			"response": []
 		},
 		{
+			"name": "Game Search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AUTH-TOKEN",
+						"value": "a1d7d635a82daf76d636e99551769dfe",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "release_date",
+							"value": "2018-11-26",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "bla",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "author",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "bla bla",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "picture",
+							"value": "https://i1.wp.com/quickhash-gui.org/wp-content/uploads/2017/07/base64.png?fit=806%2C806&ssl=1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "video",
+							"value": "http://exemple.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "external_video",
+							"value": "http://exemple.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "11.5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "store_link",
+							"value": "http://exemple.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "external_site",
+							"value": "http://exemple.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "rows",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "offset",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "begin",
+							"value": "2010-01-01",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "end",
+							"value": "2019-01-01",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sort_releasedate",
+							"value": "DESC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sort_starts",
+							"value": "DESC",
+							"type": "text"
+						},
+						{
+							"key": "stars",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/game/search/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"game",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Star",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "game",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "star",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/api/stars/",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"api",
+						"stars",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Game Update",
 			"request": {
 				"method": "POST",
@@ -360,6 +539,131 @@
 			"response": []
 		},
 		{
+			"name": "User POST Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "julian.ll",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "julian",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "layen",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "julian.layen@talan.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "azerty",
+							"type": "text"
+						},
+						{
+							"key": "googleid",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "groups",
+							"value": "ROLE_USER",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/user/register",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User POST Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "julian.ll",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "julian",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "layen",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "julian.layen@talan.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "azerty",
+							"type": "text"
+						},
+						{
+							"key": "googleid",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "groups",
+							"value": "ROLE_USER",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://iut.local/user/login",
+					"protocol": "http",
+					"host": [
+						"iut",
+						"local"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Comment POST",
 			"request": {
 				"method": "POST",
@@ -380,6 +684,11 @@
 						{
 							"key": "user",
 							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "star",
+							"value": "5",
 							"type": "text"
 						}
 					]
@@ -428,14 +737,35 @@
 		{
 			"name": "Comment GET",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "game",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "rows",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "offset",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "sort",
+							"value": "DESC",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "http://iut.local/api/comment/1",
+					"raw": "http://iut.local/api/comment/game/",
 					"protocol": "http",
 					"host": [
 						"iut",
@@ -444,7 +774,8 @@
 					"path": [
 						"api",
 						"comment",
-						"1"
+						"game",
+						""
 					]
 				}
 			},
