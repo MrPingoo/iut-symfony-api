@@ -53,13 +53,7 @@ class ApiCommentController extends AbstractController
             }
 
             // Find all categories
-            $user_id = $request->get('user');
-            if (!empty($game_id)) {
-                $repository = $this->getDoctrine()->getRepository(User::class);
-                $user = $repository->findOneById($user_id);
-                // Set Categories
-                $comment->setUser($user);
-            }
+            $comment->setUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
@@ -82,14 +76,7 @@ class ApiCommentController extends AbstractController
                 $stars->setGame($game);
             }
 
-            // Find all categories
-            $user_id = $request->get('user');
-            if (!empty($game_id)) {
-                $repository = $this->getDoctrine()->getRepository(User::class);
-                $user = $repository->findOneById($user_id);
-                // Set Categories
-                $stars->setUser($user);
-            }
+            $stars->setUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($stars);
@@ -128,7 +115,7 @@ class ApiCommentController extends AbstractController
 
         $game = $repositoryGame->findOneById($request->get('game'));
 
-        // Set moyenne 
+        // Set moyenne
         $repository = $this->getDoctrine()->getRepository(Stars::class);
         $moy = $repository->countNumberByGame($game);
 

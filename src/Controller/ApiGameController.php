@@ -48,16 +48,7 @@ class ApiGameController extends AbstractController
         $game->setExternalSite($request->get('external_site'));
         $game->setStoreLink($request->get('store_link'));
 
-        // Find the user by this ID
-        $user_id = $request->get('author');
-        if (!empty($user_id)) {
-            $repository = $this->getDoctrine()->getRepository(User::class);
-            /** @var User $user */
-            $user = $repository->findOneById($user_id);
-
-            // Set User object
-            $game->setAuthor($user);
-        }
+        $game->setAuthor($this->getUser());
 
         // Find all categories
         $category_id = $request->get('category');
@@ -153,16 +144,7 @@ class ApiGameController extends AbstractController
         $game->setExternalSite($request->get('external_site'));
         $game->setStoreLink($request->get('store_link'));
 
-        // Find the user by this ID
-        $user_id = $request->get('author');
-        if (!empty($user_id)) {
-            $repository = $this->getDoctrine()->getRepository(User::class);
-            /** @var User $user */
-            $user = $repository->findOneById($user_id);
-
-            // Set User object
-            $game->setAuthor($user);
-        }
+        $game->setAuthor($this->getUser());
 
         // Find all categories
         $category_id = $request->get('category');
