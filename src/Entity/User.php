@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, EquatableInterface
 {
     /**
      * @ORM\Id()
@@ -50,6 +52,25 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $apiKey;
+
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $salt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
+
+    public function __construct()
+    {
+    }
 
     public function getId(): ?int
     {
@@ -139,4 +160,68 @@ class User
 
         return $this;
     }
+
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * @param mixed $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoles()
+    {
+        // return $this->roles;
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        if (!$user instanceof WebserviceUser) {
+            return false;
+        }
+
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->salt !== $user->getSalt()) {
+            return false;
+        }
+
+        if ($this->username !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
