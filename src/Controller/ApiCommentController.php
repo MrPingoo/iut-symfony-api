@@ -128,6 +128,12 @@ class ApiCommentController extends AbstractController
 
         $game = $repositoryGame->findOneById($request->get('game'));
 
+        // Set moyenne 
+        $repository = $this->getDoctrine()->getRepository(Stars::class);
+        $moy = $repository->countNumberByGame($game);
+
+        $game->setCount(ceil($moy['total'] / $moy['count']));
+
         $comments = $repositoryComment->findByGameWithRowsAndOffset($game, $request->get('rows'), $request->get('offset'), $request->get('sorting'));
 
         return View::create($comments, Response::HTTP_OK, []);
